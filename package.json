@@ -1,0 +1,18 @@
+{
+  "name": "name-test-assignment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test assignment on position QA Automation by Roman Paraniuk",
+  "main": "index.js",
+  "author": "Roman Paraniuk <roman.paraniuk@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^5.1.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "protractor": "^5.4.2",
+    "protractor-cucumber-framework": "^6.1.3"
+  }
+}
