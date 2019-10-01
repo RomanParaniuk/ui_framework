@@ -7,8 +7,8 @@ const expect = chai.expect;
 
 async function assertRowCondition(config) {
     const expectationActions = {
-        displayed() {
-            browser.wait(EC.presenceOf(config.element), 5000, `Element "${config.element.elementName}" taking too long to appear in the DOM`);
+        async displayed() {
+            await browser.wait(EC.presenceOf(config.element), 5000, `Element "${config.element.elementName}" taking too long to appear in the DOM`);
             return expect(config.element.isDisplayed()).to.eventually.equal(true, `Element "${config.element.elementName}" is not displayed`);
         },
         async 'not present'() {
@@ -23,7 +23,7 @@ async function assertRowCondition(config) {
         async 'not active'() {
             return expect(await config.element.getAttribute('class')).to.contains('disabled', `Element "${config.element.elementName}" is active`);
         },
-        async 'has value' () {
+        async 'has value'() {
             return expect(await config.element.getAttribute('value')).equal(config.expectedValue, `Values are not same`);
 
         }

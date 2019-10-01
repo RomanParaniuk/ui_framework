@@ -32,11 +32,15 @@ function _validatePageObject(pageObject, parentPath, pageName) {
 }
 
 function getElement(elementName, pageObject) {
-    const element = pageObject[_.camelCase(elementName)];
-    if (!element) {
-        throw new Error(`Element ${_.startCase(elementName)} is not defined on ${_.startCase(pageObject._name)}. Should be one of: "${_.upperFirst(_.keys(pageObject).join(', '))}"`)
+    let elementNameArray;
+    let parentPath;
+    elementName.includes('>') ? elementNameArray = elementName.split('>') : elementNameArray = [elementName];
+    for (const i of elementNameArray) {
+        parentPath = pageObject;
+        pageObject = pageObject[_.camelCase(i)];
+        _validatePageObject(pageObject, parentPath, i);
     }
-    return _.merge(element, {elementName});
+    return _.merge(pageObject, {elementName});
 }
 
 module.exports = {

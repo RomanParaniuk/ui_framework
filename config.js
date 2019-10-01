@@ -1,4 +1,5 @@
 const array = process.argv.slice(2);
+browser = require('protractor').browser;
 const options = require('minimist')(array);
 
 exports.config = {
@@ -7,7 +8,7 @@ exports.config = {
     directConnect: true,
     allScriptsTimeout: 15000,
     specs: options.spec || ['./features/*.feature'],
-    baseUrl: 'http://cafetownsend-angular-rails.herokuapp.com',
+    baseUrl: 'TEST',
     capabilities: {
         browserName: "chrome",
         shardTestFiles: true,
@@ -15,6 +16,7 @@ exports.config = {
 
     },
     onPrepare: function () {
+        browser.waitForAngularEnabled(false);
         global.PAGES = require('./pageObjects/pages');
     },
     cucumberOpts: {
@@ -34,4 +36,4 @@ exports.config = {
             reportPath: './report'
         }
     }]
-}
+};
