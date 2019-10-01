@@ -1,4 +1,5 @@
-reports/
+.tmp/
+report/
 node_modules/
 .vscode
 .idea
